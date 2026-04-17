@@ -1,0 +1,13 @@
+{
+  "domain": "bk_light",
+  "name": "BK Light ACT1026",
+  "version": "0.1.0",
+  "documentation": "https://github.com/TBR-BRD/ha-action-32x32-led",
+  "issue_tracker": "https://github.com/TBR-BRD/ha-action-32x32-led/issues",
+  "codeowners": [],
+  "config_flow": true,
+  "integration_type": "device",
+  "requirements": ["bleak>=0.22.0", "Pillow>=10.0.0"],
+  "bluetooth": [],
+  "iot_class": "local_polling"
+}

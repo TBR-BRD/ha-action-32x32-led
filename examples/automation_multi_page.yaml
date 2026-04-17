@@ -1,0 +1,101 @@
+alias: LED Display - Multi Page Example
+description: Show time/date/day, weather/temperature and three example sensor values.
+triggers:
+  - seconds: "0"
+    id: page_1
+    trigger: time_pattern
+  - seconds: "10"
+    id: page_2
+    trigger: time_pattern
+  - seconds: "20"
+    id: page_3
+    trigger: time_pattern
+conditions: []
+actions:
+  - choose:
+      - conditions:
+          - condition: trigger
+            id: page_1
+        sequence:
+          - action: bk_light.display_lines
+            data:
+              entity_id: image.my_led_display
+              background: [0, 0, 0]
+              lines:
+                - text: "{{ now().strftime('%H:%M') }}"
+                  y_line: 2
+                  font_size: 1
+                  color: [0, 255, 0]
+                - text: "{{ now().strftime('%d.%m.%y') }}"
+                  y_line: 14
+                  font_size: 1
+                  color: [0, 255, 0]
+                - text: >-
+                    {% set days = ['MONTAG','DIENSTAG','MITTWOCH','DONNERSTAG','FREITAG','SAMSTAG','SONNTAG'] %}
+                    {{ days[now().weekday()] }}
+                  y_line: 26
+                  font_size: 1
+                  color: [0, 255, 0]
+
+      - conditions:
+          - condition: trigger
+            id: page_2
+        sequence:
+          - action: bk_light.display_lines
+            data:
+              entity_id: image.my_led_display
+              background: [0, 0, 0]
+              lines:
+                - text: >-
+                    {% set t = state_attr('weather.my_home', 'temperature') %}
+                    {{ (t | round(0) if t is not none else '?') ~ 'C' }}
+                  y_line: 5
+                  font_size: 2
+                  color: [255, 180, 0]
+                - text: >-
+                    {% set w = states('weather.my_home') %}
+                    {% set map = {
+                      'sunny': 'SONNIG',
+                      'clear-night': 'KLAR',
+                      'partlycloudy': 'T BEW',
+                      'cloudy': 'BEW',
+                      'fog': 'NEBEL',
+                      'rainy': 'REGEN',
+                      'pouring': 'S REG',
+                      'lightning': 'GEW',
+                      'lightning-rainy': 'GEWR',
+                      'snowy': 'SCHNEE',
+                      'snowy-rainy': 'SCHR',
+                      'windy': 'WIND',
+                      'windy-variant': 'WIND',
+                      'hail': 'HAGEL',
+                      'exceptional': 'WETTER'
+                    } %}
+                    {{ map.get(w, 'WETTER') }}
+                  y_line: 22
+                  font_size: 1
+                  color: [255, 180, 0]
+
+      - conditions:
+          - condition: trigger
+            id: page_3
+        sequence:
+          - action: bk_light.display_lines
+            data:
+              entity_id: image.my_led_display
+              background: [0, 0, 0]
+              lines:
+                - text: "{{ states('sensor.example_power') | float(0) | round(0) }}"
+                  y_line: 1
+                  font_size: 2
+                  color: [0, 180, 255]
+                - text: "{{ states('sensor.example_battery_soc') | float(0) | round(0) }}"
+                  y_line: 12
+                  font_size: 2
+                  color: [255, 255, 0]
+                - text: "{{ states('sensor.example_export_energy') | float(0) | round(1) }}"
+                  y_line: 23
+                  font_size: 2
+                  color: [0, 255, 120]
+    default: []
+mode: restart

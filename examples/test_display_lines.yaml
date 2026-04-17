@@ -1,0 +1,13 @@
+action: bk_light.display_lines
+data:
+  entity_id: image.my_led_display
+  background: [0, 0, 0]
+  lines:
+    - text: "18:42"
+      y_line: 5
+      font_size: 1
+      color: [0, 255, 0]
+    - text: "14.04.26"
+      y_line: 16
+      font_size: 1
+      color: [0, 255, 0]
