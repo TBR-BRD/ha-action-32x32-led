@@ -10,6 +10,8 @@ This repository focuses on a practical, Home Assistant-first workflow for the AC
 - multi-page automations
 - ESP32 Bluetooth gateway setup for reliable BLE connectivity
 
+![ACTION Datum](ACTION-LED.jpg)
+
 ## Included in this repository
 
 - patched custom integration for `BK Light ACT1026`
