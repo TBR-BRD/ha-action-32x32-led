@@ -3,9 +3,11 @@
 
 Home Assistant custom integration and setup guide for the ACTION / BK Light 32x32 BLE LED panel.
 
+
 <a href="https://www.buymeacoffee.com/thoralf.brandt" target="_blank">
   <img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174">
 </a>
+
 
 This repository focuses on a practical, Home Assistant-first workflow for the ACTION / BK Light 32x32 display:
 - patched BK Light custom integration
