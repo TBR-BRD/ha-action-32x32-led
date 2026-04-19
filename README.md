@@ -1,4 +1,5 @@
 # ha-action-32x32-led
+# Home Assistant ACTION 32x32 LED Display Integration
 
 Home Assistant custom integration and setup guide for the ACTION / BK Light 32x32 BLE LED panel.
 
